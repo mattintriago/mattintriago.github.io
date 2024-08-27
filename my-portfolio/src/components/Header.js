@@ -1,3 +1,14 @@
+// <!-- -----------------------------------------------------------------------------------
+// *  
+// *  File: Header.js
+// *  Desc: 
+// * 
+// *  Date     Eng          Change Description
+// *  -------------------------------------------------------------------------------------
+// *  8/26/24  MIntriago    Initial version.
+// * 
+// ------------------------------------------------------------------------------------ -->
+
 import styled from "styled-components";
 
 const Header = (props) => {
@@ -5,15 +16,15 @@ const Header = (props) => {
     <Container>
       <Logo>
         <a href="/">
-          <img src={`${process.env.PUBLIC_URL}/DSC_0032.JPG`} alt="Matthew Intriago" className="logo" />
+          <img src={`${process.env.PUBLIC_URL}/images/icon.png`} alt="Matthew Intriago" className="logo" />
         </a>
       </Logo>
       <NavMenu>
         <a href="/">
           <span>Home</span>
         </a>
-        <a href="/about">
-          <span>About Me</span>
+        <a href="/projects">
+          <span>Projects</span>
         </a>
         <a href="/contact">
           <span>Contact</span>
@@ -124,24 +135,6 @@ const NavMenu = styled.div`
 
   @media (max-width: 548px) {
     display: none;
-  }
-`;
-
-const Login = styled.a`
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 10px 16px;
-  margin-right: 45px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  border: 1px solid #f9f9f9;
-  border-radius: 4px;
-  transition: all 0.2s ease 0s;
-
-  &:hover {
-    background-color: #f9f9f9;
-    color: #000;
-    border-color: transparent;
   }
 `;
 

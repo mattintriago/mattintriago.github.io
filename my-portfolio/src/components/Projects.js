@@ -1,6 +1,6 @@
 // <!-- -----------------------------------------------------------------------------------
 // *  
-// *  File: About.js
+// *  File: Projects.js
 // *  Desc: 
 // * 
 // *  Date     Eng          Change Description
@@ -11,8 +11,24 @@
 
 import styled from "styled-components";
 
-const Contact = (props) => {
-  return <div></div>;
+const About = (props) => {
+  return (
+    <Container>
+    </Container>
+  );
 };
 
-export default Contact;
+const Container = styled.div`
+  align-items: center;
+  display: flex;
+  margin-top: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+  
+  h1 {
+  color: black;
+  }
+`;
+
+export default About;

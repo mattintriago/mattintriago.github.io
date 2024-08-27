@@ -39,28 +39,40 @@ const Home = (props) => {
   return (
     <Container>
 
-      <Section id="about" className={visibleSections.includes("about") ? "visible" : ""}>
+<Section id="about" className={visibleSections.includes("about") ? "visible" : ""}>
         <Wrap>
-          <a href="/">
-            <ProfileImage src={`${process.env.PUBLIC_URL}/images/icon.png`} alt="Matthew Intriago" className="logo" />
-          </a>
-          <h1>Matthew Intriago</h1>
-          <h2>Software Engineer</h2>
-          <h3>Melbourne, FL</h3>
-          <h1>About Me</h1>
-            <p>
-              Software Engineer with a demonstrated background in developing Python and C++ applications for transportation and defense industries. 
-              Experienced in Docker-based infrastructures, system integration, and software testing. 
-              Strong engineering professional with a Bachelor's degree in Computer Science from Florida Institute of Technology.
-            </p>
-          
-          <ContactLinks>
-            <a href="mailto:mintriago2017@my.fit.edu"><FaEnvelope /> <span>Email</span></a>
-            <a href="tel:+14074527951"><FaPhone /> <span>Phone</span></a>
-            <a href="https://www.linkedin.com/in/matthew-intriago/"><FaLinkedin /> <span>LinkedIn</span></a>
-            <a href="https://github.com/mattintriago"><FaGithub /> <span>Github</span></a>
-          </ContactLinks>
 
+        <AboutHeader>
+          
+            <ProfileImageWrapper>
+              <a href="/">
+                <ProfileImage src={`${process.env.PUBLIC_URL}/images/icon.png`} alt="Matthew Intriago" className="logo" />
+              </a>
+            </ProfileImageWrapper>
+
+            <HeaderContent>
+              <HeaderInfo>
+                <h1>Matthew Intriago</h1>
+                <h2>Software Engineer</h2>
+                <h3>Melbourne, FL</h3>
+              </HeaderInfo>
+              <ContactLinks>
+                <a href="mailto:mintriago2017@my.fit.edu"><FaEnvelope /> <span>Email</span></a>
+                <a href="tel:+14074527951"><FaPhone /> <span>Phone</span></a>
+                <a href="https://www.linkedin.com/in/matthew-intriago/"><FaLinkedin /> <span>LinkedIn</span></a>
+                <a href="https://github.com/mattintriago"><FaGithub /> <span>Github</span></a>
+              </ContactLinks>
+            </HeaderContent>
+
+          </AboutHeader>
+
+          <h1>About Me</h1>
+          <p>
+            Software Engineer with a demonstrated background in developing Python and C++ applications for transportation and defense industries. 
+            Experienced in Docker-based infrastructures, system integration, and software testing. 
+            Strong engineering professional with a Bachelor's degree in Computer Science from Florida Institute of Technology.
+          </p>
+          
         </Wrap>
       </Section>
 
@@ -170,7 +182,7 @@ const Section = styled.section`
 const Wrap = styled.div`
   margin-bottom: 20px;
   padding: 20px;
-  border: 1px solid #292727;
+  border: 1px solid #131313;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
@@ -180,7 +192,7 @@ const Wrap = styled.div`
   }
 
   h1 {
-    margin-top: 0;
+    margin-top: 0px;
     color: white;
     font-size: 24px;
   }
@@ -188,16 +200,19 @@ const Wrap = styled.div`
   h2 {
     color: #c6c2c2;
     font-size: 20px;
+    top-margin: -10px;
   }
 
   h3 {
     color: #b2afaf;
     font-size: 18px;
+    top-margin: -20px;
   }
 
   h4 {
     color: #7d7d81 ;
     font-size: 16px;
+    top-margin: -20px;
   }
 
   h5 {
@@ -245,24 +260,18 @@ const SkillsGroup = styled.div`
   margin-bottom: 20px;
 `;
 
-const ProfileImage = styled.img`
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 20px;
-`;
-
 const ContactLinks = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 20px;
+  margin-bottom: 30px;
 
   a {
     display: flex;
     align-items: center;
-    margin: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -274,6 +283,50 @@ const ContactLinks = styled.div`
     svg {
       margin-right: 5px;
     }
+  }
+`;
+
+const ProfileImage = styled.img`
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+`;
+
+const HeaderContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const AboutHeader = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: justify;
+`;
+
+const ProfileImageWrapper = styled.div`
+  flex-shrink: 0;
+  margin-right: 20px;
+`;
+
+const HeaderInfo = styled.div`
+  h1, h2, h3 {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+
+  h3 {
+    font-size: 18px;
   }
 `;
 

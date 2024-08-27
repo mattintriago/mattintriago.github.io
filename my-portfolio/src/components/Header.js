@@ -39,7 +39,7 @@ const Header = (props) => {
 
 const Container = styled.div`
   position: fixed;
-  background-color: #121212;
+  background-color: #0d0c0c;
   top: 0;
   left: 0;
   right: 0;

@@ -17,7 +17,7 @@ const Global = (props) => {
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #292727;
+    background-color: #131313;
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;

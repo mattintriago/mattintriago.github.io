@@ -1,6 +1,6 @@
 // <!-- -----------------------------------------------------------------------------------
 // *  
-// *  File: About.js
+// *  File: Global.js
 // *  Desc: 
 // * 
 // *  Date     Eng          Change Description
@@ -9,10 +9,19 @@
 // * 
 // ------------------------------------------------------------------------------------ -->
 
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
-const Contact = (props) => {
-  return <div></div>;
+const Global = (props) => {
+  return <GlobalStyle></GlobalStyle>;
 };
 
-export default Contact;
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #292727;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+`;
+
+export default Global;

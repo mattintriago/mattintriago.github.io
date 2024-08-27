@@ -20,14 +20,14 @@ const Header = (props) => {
         </a>
       </Logo>
       <NavMenu>
-        <a href="/">
+        <a href="/" aria-label="Home">
           <span>Home</span>
         </a>
         <a href="/projects">
           <span>Projects</span>
         </a>
-        <a href="/contact">
-          <span>Contact</span>
+        <a href="/notes">
+          <span>Notes</span>
         </a>
       </NavMenu>
       <Wrap></Wrap>
@@ -39,7 +39,7 @@ const Header = (props) => {
 
 const Container = styled.div`
   position: fixed;
-  background-color: #000;
+  background-color: #121212;
   top: 0;
   left: 0;
   right: 0;
@@ -53,20 +53,13 @@ const Container = styled.div`
 `;
 
 const Logo = styled.a`
-  /* padding: 0; */
   width: 80px;
-  /* font-size: 0; */
-  /* display: inline-block; */
   align-items: center;
+  display: flex;
 
-  a {
-    cursor: auto;
-    img {
-      /* display: flex; */
-      width: 90%;
-      border-radius: 50px;
-      /* align-items: center; */
-    }
+  img {
+    width: 90%;
+    border-radius: 50%;
   }
 `;
 

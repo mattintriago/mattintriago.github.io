@@ -11,12 +11,20 @@
 
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { FaEnvelope, FaPhone, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaFilePdf } from 'react-icons/fa';
+import Header from "../components/Header";
 
 const Home = () => {
   const [visibleSections, setVisibleSections] = useState([]);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -27,29 +35,30 @@ const Home = () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.37 }
     );
 
     document.querySelectorAll("section").forEach((section) => {
       observer.observe(section);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const sections = [
     {
       id: "home",
       content: (
+        
         <HomeContent>
-          <AboutHeader>
-
+          <AboutHeader isScrolled={isScrolled}>
             <ProfileImageWrapper>
               <ProfileImage src={`${process.env.PUBLIC_URL}/images/icon.png`} alt="Matthew Intriago" />
             </ProfileImageWrapper>
-
             <HeaderContent>
-
               <HeaderInfo>
                 <h1>Matthew Intriago</h1>
                 <h2>Software Engineer</h2>
@@ -79,10 +88,25 @@ const Home = () => {
       content: (
         <>
           <p>
-            Software Engineer with a demonstrated background in developing Python and C++ applications for transportation and defense industries. 
+            I am a Software Engineer with a demonstrated background in developing Python and C++ applications for transportation and defense industries. 
             Experienced in Docker-based infrastructures, system integration, and software testing. 
             Strong engineering professional with a Bachelor's degree in Computer Science from Florida Institute of Technology.
           </p>
+          <PDFLinks>
+            <ul>
+              <li>
+                <a href={`${process.env.PUBLIC_URL}/documents/Matthew_Intriago_Resume.pdf`} target="_blank" rel="noopener noreferrer">
+                  <FaFilePdf /> Resume
+                </a>
+              </li>
+              <li>
+                <a href={`${process.env.PUBLIC_URL}/documents/Matthew_Intriago_Unofficial_Transcript.pdf`} target="_blank" rel="noopener noreferrer">
+                  <FaFilePdf /> Transcript
+                </a>
+              </li>
+              {/* Add more PDF links as needed */}
+            </ul>
+          </PDFLinks>
         </>
       )
     },
@@ -174,20 +198,23 @@ const Home = () => {
   ];
 
   return (
-    <Container>
-      {sections.map(({ id, title, content }) => (
-        <Section 
-          key={id} 
-          id={id} 
-          className={`${visibleSections.includes(id) ? "visible" : ""} ${id === "home" ? "full-screen" : ""}`}
-        >
-          <Wrap>
-            {title && <h1>{title}</h1>}
-            {content}
-          </Wrap>
-        </Section>
-      ))}
-    </Container>
+    <>
+      <Header isScrolled={isScrolled} />
+      <Container>
+        {sections.map(({ id, title, content }) => (
+          <Section 
+            key={id} 
+            id={id} 
+            className={`${visibleSections.includes(id) ? "visible" : ""} ${id === "home" ? "full-screen" : ""}`}
+          >
+            <Wrap>
+              {title && <h1>{title}</h1>}
+              {content}
+            </Wrap>
+          </Section>
+        ))}
+      </Container>
+    </>
   );
 };
 
@@ -283,6 +310,50 @@ const Wrap = styled.div`
   }
 `;
 
+const PDFLinks = styled.div`
+  margin-top: 20px;
+
+  h3 {
+    color: #c6c2c2;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 4px;
+
+    &:hover {
+      color: #0077b5;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    svg {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+  }
+`;
+
 const HomeContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -328,34 +399,32 @@ const SkillsGroup = styled.div`
 const ContactLinks = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 20px;
-
-  @media (min-width: 768px) {
-    justify-content: flex-start;
-  }
 
   a {
     display: flex;
     align-items: center;
-    margin: 5px 10px;
+    margin: 5px 15px 5px 0;
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
+    font-size: 18px;
 
     &:hover {
       color: #0077b5;
     }
 
     svg {
-      margin-right: 5px;
+      margin-right: 8px;
+      font-size: 22px;
     }
   }
 `;
 
 const ProfileImage = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   object-fit: cover;
 `;
@@ -363,24 +432,21 @@ const ProfileImage = styled.img`
 const HeaderContent = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  margin-left:40px;
 
-  @media (min-width: 768px) {
-    align-items: flex-start;
-  }
 `;
 
 const AboutHeader = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    align-items: flex-start;
-    text-align: left;
-  }
+  justify-content: center;
+  width: 100%;
+  height: ${props => props.isScrolled ? '0' : '100vh'};
+  opacity: ${props => props.isScrolled ? '0' : '1'};
+  overflow: hidden;
+  transition: height 0.5s ease, opacity 0.5s ease;
 `;
 
 const ProfileImageWrapper = styled.div`
@@ -399,17 +465,18 @@ const HeaderInfo = styled.div`
   }
 
   h1 {
-    font-size: 28px;
-    margin-bottom: 5px;
+    font-size: 36px;
+    margin-bottom: 10px;
   }
 
   h2 {
-    font-size: 22px;
-    margin-bottom: 5px;
+    font-size: 28px;
+    margin-bottom: 8px;
   }
 
   h3 {
-    font-size: 18px;
+    font-size: 22px;
+    margin-bottom: 15px;
   }
 `;
 

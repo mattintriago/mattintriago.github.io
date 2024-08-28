@@ -9,11 +9,12 @@
 // * 
 // ------------------------------------------------------------------------------------ -->
 
+import React from "react";
 import styled from "styled-components";
 
-const Header = (props) => {
+const Header = ({ isScrolled }) => {
   return (
-    <Container>
+    <Container isScrolled={isScrolled}>
       <Logo>
         <a href="/">
           <img src={`${process.env.PUBLIC_URL}/images/icon.png`} alt="Matthew Intriago" className="logo" />
@@ -44,12 +45,14 @@ const Container = styled.div`
   left: 0;
   right: 0;
   width: 100%;
-  height: 90px;
+  height: ${props => props.isScrolled ? '90px' : '0'};
   display: flex;
   justify-content: space-between;
   padding: 0 30px;
   align-items: center;
   z-index: 1000;
+  transition: height 0.5s ease;
+  overflow: hidden;
 `;
 
 const Logo = styled.a`

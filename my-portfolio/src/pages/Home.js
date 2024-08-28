@@ -53,8 +53,8 @@ const Home = () => {
       id: "home",
       content: (
         
-        <HomeContent>
-          <AboutHeader isScrolled={isScrolled}>
+        <HomeContent isScrolled={isScrolled}>
+          <AboutHeader>
             <ProfileImageWrapper>
               <ProfileImage src={`${process.env.PUBLIC_URL}/images/icon.png`} alt="Matthew Intriago" />
             </ProfileImageWrapper>

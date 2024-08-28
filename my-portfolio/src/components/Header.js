@@ -9,10 +9,17 @@
 // * 
 // ------------------------------------------------------------------------------------ -->
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Header = ({ isScrolled }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Container isScrolled={isScrolled}>
       <Logo>
@@ -31,6 +38,14 @@ const Header = ({ isScrolled }) => {
           <span>Notes</span>
         </a>
       </NavMenu>
+      <MobileMenuIcon onClick={toggleMenu}>
+        {isOpen ? <FaTimes /> : <FaBars />}
+      </MobileMenuIcon>
+      <MobileMenu isOpen={isOpen}>
+        <a href="/" onClick={toggleMenu}>Home</a>
+        <a href="/projects" onClick={toggleMenu}>Projects</a>
+        <a href="/notes" onClick={toggleMenu}>Notes</a>
+      </MobileMenu>
       <Wrap></Wrap>
     </Container>
   );
@@ -45,7 +60,7 @@ const Container = styled.div`
   left: 0;
   right: 0;
   width: 100%;
-  height: ${props => props.isScrolled ? '90px' : '0'};
+  height: ${props => props.isScrolled ? '90px' : '70px'}; // Set a default height
   display: flex;
   justify-content: space-between;
   padding: 0 30px;
@@ -130,6 +145,45 @@ const NavMenu = styled.div`
   }
 
   @media (max-width: 548px) {
+    display: none;
+  }
+`;
+
+const MobileMenuIcon = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled.div`
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background-color: #0d0c0c;
+  padding: 20px;
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #0077b5;
+    }
+  }
+
+  @media (min-width: 768px) {
     display: none;
   }
 `;

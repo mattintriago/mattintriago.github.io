@@ -15,7 +15,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Global from "./components/Global";
 import Home from "./pages/Home";
-import About from "./pages/Projects";
+import Projects from "./pages/Projects";
 import Notes from "./pages/Notes";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/notes" element={<Notes />} />
         </Routes>
       </Router>

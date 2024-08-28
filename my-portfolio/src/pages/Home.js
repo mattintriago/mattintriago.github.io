@@ -9,12 +9,11 @@
 // * 
 // ------------------------------------------------------------------------------------ -->
 
-
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import { FaEnvelope, FaPhone, FaLinkedin, FaGithub } from 'react-icons/fa';
 
-const Home = (props) => {
+const Home = () => {
   const [visibleSections, setVisibleSections] = useState([]);
 
   useEffect(() => {
@@ -22,11 +21,13 @@ const Home = (props) => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setVisibleSections((prev) => [...prev, entry.target.id]);
+            setVisibleSections((prev) => [...new Set([...prev, entry.target.id])]);
+          } else {
+            setVisibleSections((prev) => prev.filter((id) => id !== entry.target.id));
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.5 }
     );
 
     document.querySelectorAll("section").forEach((section) => {
@@ -36,138 +37,176 @@ const Home = (props) => {
     return () => observer.disconnect();
   }, []);
 
-  return (
-    <Container>
+  const sections = [
+    {
+      id: "home",
+      content: (
+        <HomeContent>
+          <AboutHeader>
 
-<Section id="about" className={visibleSections.includes("about") ? "visible" : ""}>
-        <Wrap>
-
-        <AboutHeader>
-          
             <ProfileImageWrapper>
-              <a href="/">
-                <ProfileImage src={`${process.env.PUBLIC_URL}/images/icon.png`} alt="Matthew Intriago" className="logo" />
-              </a>
+              <ProfileImage src={`${process.env.PUBLIC_URL}/images/icon.png`} alt="Matthew Intriago" />
             </ProfileImageWrapper>
 
             <HeaderContent>
+
               <HeaderInfo>
                 <h1>Matthew Intriago</h1>
                 <h2>Software Engineer</h2>
-                <h3>Melbourne, FL</h3>
+                <h3>Melbourne, FL, United States</h3>
               </HeaderInfo>
+
               <ContactLinks>
-                <a href="mailto:mintriago2017@my.fit.edu"><FaEnvelope /> <span>Email</span></a>
-                <a href="tel:+14074527951"><FaPhone /> <span>Phone</span></a>
-                <a href="https://www.linkedin.com/in/matthew-intriago/"><FaLinkedin /> <span>LinkedIn</span></a>
-                <a href="https://github.com/mattintriago"><FaGithub /> <span>Github</span></a>
+                {[
+                  { href: "mailto:mintriago2017@my.fit.edu", icon: FaEnvelope, text: "Email" },
+                  { href: "tel:+14074527951", icon: FaPhone, text: "Phone" },
+                  { href: "https://www.linkedin.com/in/matthew-intriago/", icon: FaLinkedin, text: "LinkedIn" },
+                  { href: "https://github.com/mattintriago", icon: FaGithub, text: "Github" }
+                ].map(({ href, icon: Icon, text }) => (
+                  <a key={text} href={href}><Icon /> <span>{text}</span></a>
+                ))}
               </ContactLinks>
+
             </HeaderContent>
 
           </AboutHeader>
-
-          <h1>About Me</h1>
+        </HomeContent>
+      )
+    },
+    {
+      id: "about",
+      title: "About Me",
+      content: (
+        <>
           <p>
             Software Engineer with a demonstrated background in developing Python and C++ applications for transportation and defense industries. 
             Experienced in Docker-based infrastructures, system integration, and software testing. 
             Strong engineering professional with a Bachelor's degree in Computer Science from Florida Institute of Technology.
           </p>
-          
-        </Wrap>
-      </Section>
-
-      <Section id="experience" className={visibleSections.includes("experience") ? "visible" : ""}>
-        <Wrap>
-        <h1>Work Experience</h1>
-        <JobExperience>
-          <h2>Software Engineer I</h2>
-          <h3>Heka Aero LLC, Melbourne, FL</h3>
-          <h4>Nov. 2021 – Aug. 2024</h4>
-          <ul>
-            <li>Contracted to develop Python and C++ applications within a Docker-based infrastructure for Wabtec Corporation and Maritime Tactical Systems, Inc.</li>
-            <li>Conducted thorough testing and validation of integrated systems to ensure reliability and performance against defined requirements.</li>
-            <li>Created and maintained comprehensive documentation for the team, including detailed onboarding instructions, test case procedures, installation guides, and application READMEs.</li>
-            <li>Performed ongoing maintenance, support, and enhancements for existing systems and platforms, which included troubleshooting and debugging reported issues.</li>
-            <li>Collaborated with inter-disciplined engineers in an agile environment and participated in daily scrums.</li>
-          </ul>
-        </JobExperience>
-        <JobExperience>
-          <h2>Associate Software Engineering Technician</h2>
-          <h3>Leonardo DRS, Melbourne, FL</h3>
-          <h4>May. 2019 – Jun. 2020</h4>
-          <ul>
-            <li>Developed C/C++ code in a Linux environment in support of active projects.</li>
-            <li>Developed automated unit tests and integrated them into a Jenkins pipeline.</li>
-            <li>Supported engineering with routine engineering duties and/or hands-on tasks.</li>
-          </ul>
-        </JobExperience>
-        <JobExperience>
-          <h2>Phone Analyst</h2>
-          <h3>Florida Institute of Technology, Melbourne, FL</h3>
-          <h4>Sep. 2017 – Jun. 2019</h4>
-          <ul>
-            <li>Applied knowledge of computer software and hardware skills to incoming calls and appointments from students, faculty, and staff across campus.</li>
-            <li>Diagnosed and repaired computers across campus, helping to eliminate technical difficulties and inefficiencies for students, faculty, staff, and classroom technology.</li>
-          </ul>
-      </JobExperience>
-      </Wrap>
-    </Section>
-
-      <Section id="education" className={visibleSections.includes("education") ? "visible" : ""} >
-        <Wrap>
-          <h1>Education</h1>
+        </>
+      )
+    },
+    {
+      id: "experience",
+      title: "Work Experience",
+      content: (
+        <>
+          {[
+            {
+              title: "Software Engineer I",
+              company: "Heka Aero LLC, Melbourne, FL",
+              period: "Nov. 2021 – Aug. 2024",
+              responsibilities: [
+                "Contracted to develop Python and C++ applications within a Docker-based infrastructure for Wabtec Corporation and Maritime Tactical Systems, Inc.",
+                "Conducted thorough testing and validation of integrated systems to ensure reliability and performance against defined requirements.",
+                "Created and maintained comprehensive documentation for the team, including detailed onboarding instructions, test case procedures, installation guides, and application READMEs.",
+                "Performed ongoing maintenance, support, and enhancements for existing systems and platforms, which included troubleshooting and debugging reported issues.",
+                "Collaborated with inter-disciplined engineers in an agile environment and participated in daily scrums."
+              ]
+            },
+            {
+              title: "Associate Software Engineering Technician",
+              company: "Leonardo DRS, Melbourne, FL",
+              period: "May. 2019 – Jun. 2020",
+              responsibilities: [
+                "Developed C/C++ code in a Linux environment in support of active projects.",
+                "Developed automated unit tests and integrated them into a Jenkins pipeline.",
+                "Supported engineering with routine engineering duties and/or hands-on tasks."
+              ]
+            },
+            {
+              title: "Phone Analyst",
+              company: "Florida Institute of Technology, Melbourne, FL",
+              period: "Sep. 2017 – Jun. 2019",
+              responsibilities: [
+                "Applied knowledge of computer software and hardware skills to incoming calls and appointments from students, faculty, and staff across campus.",
+                "Diagnosed and repaired computers across campus, helping to eliminate technical difficulties and inefficiencies for students, faculty, staff, and classroom technology."
+              ]
+            }
+          ].map((job, index) => (
+            <JobExperience key={index}>
+              <h2>{job.title}</h2>
+              <h3>{job.company}</h3>
+              <h4>{job.period}</h4>
+              <ul>
+                {job.responsibilities.map((resp, i) => (
+                  <li key={i}>{resp}</li>
+                ))}
+              </ul>
+            </JobExperience>
+          ))}
+        </>
+      )
+    },
+    {
+      id: "education",
+      title: "Education",
+      content: (
+        <>
           <h2>Bachelor of Science: Computer Science</h2>
           <h3>Florida Institute of Technology, Melbourne, FL</h3>
           <h4>Aug. 2017 – May. 2021</h4>
           <h5>GPA: 3.31</h5>
-        </Wrap>
-      </Section>
+        </>
+      )
+    },
+    {
+      id: "skills",
+      title: "Skills",
+      content: (
+        <>
+          {[
+            { title: "Programming Languages", skills: ["Python", "C++", "HTML", "CSS", "JavaScript", "PostgreSQL"] },
+            { title: "Frameworks & Tools", skills: ["Linux", "Docker", "Git", "Jenkins", "VS Code", "RTI DDS", "Jira", "Confluence", "React"] }
+          ].map((group, index) => (
+            <SkillsGroup key={index}>
+              <h3>{group.title}</h3>
+              <SkillsList>
+                {group.skills.map((skill, i) => (
+                  <li key={i}>{skill}</li>
+                ))}
+              </SkillsList>
+            </SkillsGroup>
+          ))}
+        </>
+      )
+    }
+  ];
 
-       <Section id="skills" className={visibleSections.includes("skills") ? "visible" : ""}>
-        <Wrap>
-          <h1>Skills</h1>
-          <SkillsGroup>
-            <h3>Programming Languages</h3>
-            <SkillsList>
-              <li>Python</li>
-              <li>C++</li>\
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>JavaScript</li>
-              <li>PostgreSQL</li>
-            </SkillsList>
-          </SkillsGroup>
-          <SkillsGroup>
-            <h3>Frameworks & Tools</h3>
-            <SkillsList>
-              <li>Linux</li>
-              <li>Docker</li>
-              <li>Git</li>
-              <li>Jenkins</li>
-              <li>VS Code</li>
-              <li>RTI DDS</li>
-              <li>Jira</li>
-              <li>Confluence</li>
-              <li>React</li>
-            </SkillsList>
-          </SkillsGroup>
-        </Wrap>
-      </Section>
+  return (
+    <Container>
+      {sections.map(({ id, title, content }) => (
+        <Section 
+          key={id} 
+          id={id} 
+          className={`${visibleSections.includes(id) ? "visible" : ""} ${id === "home" ? "full-screen" : ""}`}
+        >
+          <Wrap>
+            {title && <h1>{title}</h1>}
+            {content}
+          </Wrap>
+        </Section>
+      ))}
     </Container>
   );
 };
+
+// Styled-Components
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 800px;
-  margin: 100px auto 0;
-  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
 `;
+
 
 const Section = styled.section`
   width: 100%;
+  max-width: 800px;
   margin-bottom: 40px;
   opacity: 0;
   transform: translateY(20px);
@@ -176,6 +215,15 @@ const Section = styled.section`
   &.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  &.full-screen {
+    height: 100vh;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
   }
 `;
 
@@ -189,6 +237,20 @@ const Wrap = styled.div`
 
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .full-screen & {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: none;
+  }
+
+  p {
+    color: white;
+    text-align: justify;
   }
 
   h1 {
@@ -219,12 +281,15 @@ const Wrap = styled.div`
     color: #7d7d81 ;
     font-size: 16px;
   }
+`;
 
-  p {
-    color: white;
-    font-size: 16px;
-    text-align: justify;
-  }
+const HomeContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 `;
 
 const JobExperience = styled.div`
@@ -263,15 +328,17 @@ const SkillsGroup = styled.div`
 const ContactLinks = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   margin-top: 20px;
-  margin-bottom: 30px;
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
 
   a {
     display: flex;
     align-items: center;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    margin: 5px 10px;
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -291,23 +358,39 @@ const ProfileImage = styled.img`
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 20px;
 `;
 
 const HeaderContent = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    align-items: flex-start;
+  }
 `;
 
 const AboutHeader = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  text-align: justify;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
 `;
 
 const ProfileImageWrapper = styled.div`
   flex-shrink: 0;
-  margin-right: 20px;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
 `;
 
 const HeaderInfo = styled.div`

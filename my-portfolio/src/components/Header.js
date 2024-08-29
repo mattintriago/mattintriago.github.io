@@ -9,15 +9,31 @@
 // * 
 // ------------------------------------------------------------------------------------ -->
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Header = ({ isScrolled }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState("");
+
+  useEffect(() => {
+    // Set the active item based on the current path when the component mounts
+    const path = window.location.pathname;
+    if (path === "/") setActiveItem("home");
+    else if (path === "/projects") setActiveItem("projects");
+    else if (path === "/notes") setActiveItem("notes");
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleItemClick = (item) => {
+    setActiveItem(item);
+    if (isOpen) {
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -28,23 +44,36 @@ const Header = ({ isScrolled }) => {
         </a>
       </Logo>
       <NavMenu>
-        <a href="/" aria-label="Home">
+        <NavItem 
+          href="/" 
+          aria-label="Home" 
+          $isActive={activeItem === "home"} 
+          onClick={() => handleItemClick("home")}
+        >
           <span>Home</span>
-        </a>
-        <a href="/projects">
+        </NavItem>
+        <NavItem 
+          href="/projects" 
+          $isActive={activeItem === "projects"} 
+          onClick={() => handleItemClick("projects")}
+        >
           <span>Projects</span>
-        </a>
-        <a href="/notes">
+        </NavItem>
+        <NavItem 
+          href="/notes" 
+          $isActive={activeItem === "notes"} 
+          onClick={() => handleItemClick("notes")}
+        >
           <span>Notes</span>
-        </a>
+        </NavItem>
       </NavMenu>
       <MobileMenuIcon onClick={toggleMenu}>
         {isOpen ? <FaTimes /> : <FaBars />}
       </MobileMenuIcon>
       <MobileMenu isOpen={isOpen}>
-        <a href="/" onClick={toggleMenu}>Home</a>
-        <a href="/projects" onClick={toggleMenu}>Projects</a>
-        <a href="/notes" onClick={toggleMenu}>Notes</a>
+        <MobileNavItem href="/" onClick={() => handleItemClick("home")} $isActive={activeItem === "home"}>Home</MobileNavItem>
+        <MobileNavItem href="/projects" onClick={() => handleItemClick("projects")} $isActive={activeItem === "projects"}>Projects</MobileNavItem>
+        <MobileNavItem href="/notes" onClick={() => handleItemClick("notes")} $isActive={activeItem === "notes"}>Notes</MobileNavItem>
       </MobileMenu>
       <Wrap></Wrap>
     </Container>
@@ -76,7 +105,7 @@ const Logo = styled.a`
   display: flex;
 
   img {
-    width: 90%;
+    width: 70%;
     border-radius: 50%;
   }
 `;
@@ -102,50 +131,50 @@ const NavMenu = styled.div`
   margin-right: auto;
   margin-left: 30px;
 
-  a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
+  @media (max-width: 548px) {
+    display: none;
+  }
+`;
 
-    span {
-      color: rgb(249, 249, 249);
-      font-size: 18px;
-      letter-spacing: 1px;
-      line-height: 1.08;
-      padding: 1px 0;
-      white-space: nowrap;
-      position: relative;
+const NavItem = styled.a`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
 
-      &:before {
-        background-color: rgb(249, 249, 249);
-        border-radius: 0 0 4px 4px;
-        bottom: -6px;
-        content: "";
-        height: 2px;
-        left: 0;
-        opacity: 0;
-        position: absolute;
-        right: 0;
-        transform-origin: left center;
-        transform: scaleX(0);
-        transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
-        visibility: hidden;
-        width: auto;
-      }
-    }
+  span {
+    color: rgb(249, 249, 249);
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 1.08;
+    padding: 1px 0;
+    white-space: nowrap;
+    position: relative;
 
-    &:hover {
-      span:before {
-        transform: scaleX(1);
-        visibility: visible;
-        opacity: 1 !important;
-      }
+    &:before {
+      background-color: rgb(249, 249, 249);
+      border-radius: 0 0 4px 4px;
+      bottom: -6px;
+      content: "";
+      height: 2px;
+      left: 0;
+      opacity: ${props => props.$isActive ? 1 : 0};
+      position: absolute;
+      right: 0;
+      transform-origin: left center;
+      transform: ${props => props.$isActive ? 'scaleX(1)' : 'scaleX(0)'};
+      transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+      visibility: ${props => props.$isActive ? 'visible' : 'hidden'};
+      width: auto;
     }
   }
 
-  @media (max-width: 548px) {
-    display: none;
+  &:hover {
+    span:before {
+      transform: scaleX(1);
+      visibility: visible;
+      opacity: 1 !important;
+    }
   }
 `;
 
@@ -185,6 +214,18 @@ const MobileMenu = styled.div`
 
   @media (min-width: 768px) {
     display: none;
+  }
+`;
+
+const MobileNavItem = styled.a`
+  text-decoration: none;
+  color: ${props => props.$isActive ? '#0077b5' : 'white'};
+  font-size: 18px;
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+
+  &:hover, &:focus {
+    color: #0077b5;
   }
 `;
 

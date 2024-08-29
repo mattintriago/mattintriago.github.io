@@ -77,7 +77,6 @@ const Home = () => {
               </ContactLinks>
 
             </HeaderContent>
-
           </AboutHeader>
         </HomeContent>
       )
@@ -420,13 +419,20 @@ const ContactLinks = styled.div`
       font-size: 22px;
     }
   }
-`;
 
-const ProfileImage = styled.img`
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
+  @media (min-width: 768px) {
+  justify-content: flex-start;
+
+  a {
+    margin: 5px 15px 5px 0;
+    font-size: 18px;
+
+    svg {
+      font-size: 22px;
+    }
+  }
+}
+    
 `;
 
 const HeaderContent = styled.div`
@@ -434,6 +440,11 @@ const HeaderContent = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-left:40px;
+
+   @media (min-width: 768px) {
+    align-items: flex-start;
+    text-align: left;
+  }
 
 `;
 
@@ -447,13 +458,32 @@ const AboutHeader = styled.div`
   opacity: ${props => props.isScrolled ? '0' : '1'};
   overflow: hidden;
   transition: height 0.5s ease, opacity 0.5s ease;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 40px;
+  }
+`;
+
+const ProfileImage = styled.img`
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+
+   @media (min-width: 768px) {
+    width: 200px;
+    height: 200px;
+  }
+    
 `;
 
 const ProfileImageWrapper = styled.div`
   flex-shrink: 0;
   margin-bottom: 20px;
 
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
     margin-right: 20px;
     margin-bottom: 0;
   }
@@ -465,18 +495,32 @@ const HeaderInfo = styled.div`
   }
 
   h1 {
-    font-size: 36px;
+    font-size: 28px;
     margin-bottom: 10px;
   }
 
   h2 {
-    font-size: 28px;
+    font-size: 22px;
     margin-bottom: 8px;
   }
 
   h3 {
-    font-size: 22px;
+    font-size: 18px;
     margin-bottom: 15px;
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 36px;
+    }
+
+    h2 {
+      font-size: 28px;
+    }
+
+    h3 {
+      font-size: 22px;
+    }
   }
 `;
 

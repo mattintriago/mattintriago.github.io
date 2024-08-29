@@ -23,7 +23,7 @@ function App() {
     <div className="App">
       <Global />
       <Router>
-        <Header />
+        <Header  />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />

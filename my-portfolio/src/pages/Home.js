@@ -180,7 +180,7 @@ const Home = () => {
         <>
           {[
             { title: "Programming Languages", skills: ["Python", "C++", "HTML", "CSS", "JavaScript", "PostgreSQL"] },
-            { title: "Frameworks & Tools", skills: ["Linux", "Docker", "Git", "Jenkins", "VS Code", "RTI DDS", "Jira", "Confluence", "React"] }
+            { title: "Frameworks & Tools", skills: ["Linux", "Docker", "Git", "Jenkins", "VS Code", "RTI DDS", "Jira", "Confluence", "React.js"] }
           ].map((group, index) => (
             <SkillsGroup key={index}>
               <h3>{group.title}</h3>

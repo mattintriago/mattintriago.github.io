@@ -31,17 +31,13 @@ const Header = ({ isScrolled }) => {
 
   const handleItemClick = (item) => {
     setActiveItem(item);
-    if (isOpen) {
-      setIsOpen(false);
-    }
+    setIsOpen(false);
   };
 
   return (
     <Container isScrolled={isScrolled}>
-      <Logo>
-        <a href="/">
-          <img src={`${process.env.PUBLIC_URL}/images/icon.png`} alt="Matthew Intriago" className="logo" />
-        </a>
+      <Logo href="/">
+        <img src={`${process.env.PUBLIC_URL}/images/icon.png`} alt="Matthew Intriago" className="logo" />
       </Logo>
       <NavMenu>
         <NavItem 
@@ -70,17 +66,16 @@ const Header = ({ isScrolled }) => {
       <MobileMenuIcon onClick={toggleMenu}>
         {isOpen ? <FaTimes /> : <FaBars />}
       </MobileMenuIcon>
-      <MobileMenu isOpen={isOpen}>
-        <MobileNavItem href="/" onClick={() => handleItemClick("home")} $isActive={activeItem === "home"}>Home</MobileNavItem>
-        <MobileNavItem href="/projects" onClick={() => handleItemClick("projects")} $isActive={activeItem === "projects"}>Projects</MobileNavItem>
-        <MobileNavItem href="/notes" onClick={() => handleItemClick("notes")} $isActive={activeItem === "notes"}>Notes</MobileNavItem>
-      </MobileMenu>
-      <Wrap></Wrap>
+      {isOpen && (
+        <MobileMenu>
+          <MobileNavItem href="/" onClick={() => handleItemClick("home")} $isActive={activeItem === "home"}>Home</MobileNavItem>
+          <MobileNavItem href="/projects" onClick={() => handleItemClick("projects")} $isActive={activeItem === "projects"}>Projects</MobileNavItem>
+          <MobileNavItem href="/notes" onClick={() => handleItemClick("notes")} $isActive={activeItem === "notes"}>Notes</MobileNavItem>
+        </MobileMenu>
+      )}
     </Container>
   );
 };
-
-//Styled-Components
 
 const Container = styled.div`
   position: fixed;
@@ -89,14 +84,13 @@ const Container = styled.div`
   left: 0;
   right: 0;
   width: 100%;
-  height: ${props => props.isScrolled ? '90px' : '70px'}; // Set a default height
+  height: ${props => props.isScrolled ? '90px' : '70px'};
   display: flex;
   justify-content: space-between;
   padding: 0 30px;
   align-items: center;
   z-index: 1000;
   transition: height 0.5s ease;
-  overflow: hidden;
 `;
 
 const Logo = styled.a`
@@ -108,15 +102,6 @@ const Logo = styled.a`
     width: 70%;
     border-radius: 50%;
   }
-`;
-
-const Wrap = styled.div`
-  align-items: center;
-  display: flex;
-  flex-flow: row nowrap;
-  position: relative;
-  margin-right: auto;
-  margin-left: auto;
 `;
 
 const NavMenu = styled.div`
@@ -131,7 +116,7 @@ const NavMenu = styled.div`
   margin-right: auto;
   margin-left: 30px;
 
-  @media (max-width: 548px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -179,40 +164,28 @@ const NavItem = styled.a`
 `;
 
 const MobileMenuIcon = styled.div`
-  display: flex;
+  display: none;
   align-items: center;
   cursor: pointer;
   font-size: 24px;
   color: white;
 
-  @media (min-width: 768px) {
-    display: none;
+  @media (max-width: 768px) {
+    display: flex;
   }
 `;
 
 const MobileMenu = styled.div`
-  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  display: flex;
   flex-direction: column;
   position: absolute;
-  top: 70px;
+  top: 100%;
   left: 0;
   right: 0;
   background-color: #0d0c0c;
   padding: 20px;
 
-  a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    margin-bottom: 15px;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #0077b5;
-    }
-  }
-
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     display: none;
   }
 `;

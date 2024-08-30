@@ -11,6 +11,7 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import './App.css';
 import Global from "./components/Global";
 import ConditionalHeader from './components/ConditionalHeader';
 import Home from "./pages/Home";

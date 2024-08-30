@@ -416,7 +416,6 @@ table, th, td, tr, h3, a  {
   }
 }
 
-// keyframes for the dash gradient animation
 @-webkit-keyframes pulse {
 	0%{background-position:0% 50%}
 	50%{background-position:100% 50%}

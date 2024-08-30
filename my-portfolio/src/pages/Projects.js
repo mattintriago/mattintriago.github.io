@@ -53,8 +53,8 @@ const Projects = () => {
       id: "debris-removal",
       title: "Debris in Space Autonomous Removal Mechanism",
       description: "Acted as a Control Systems Engineer in developing a single-use, autonomous, and universal space debris grappling device that uses capacitor discharge stud welding as its method of attachment. As a part of my role, I was responsible for developing a simulation model to demonstrate the device's ability to capture debris in space using ROS and Gazebo.",
-      githubLink: "https://github.com/yourusername/debris-removal",
-      demoLink: "https://demo.debrisremoval.com"
+      githubLink: "http://localhost:3000/sp",
+      demoLink: "https://www.youtube.com/watch?v=66Hwhugrm3c&t=4s"
     },
     {
       id: "portfolio-website",

@@ -8,7 +8,6 @@
 // *  8/26/24  MIntriago    Initial version.
 // * 
 // ------------------------------------------------------------------------------------ -->
-
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FaBars, FaTimes } from 'react-icons/fa';
@@ -18,7 +17,6 @@ const Header = ({ isScrolled }) => {
   const [activeItem, setActiveItem] = useState("");
 
   useEffect(() => {
-    // Set the active item based on the current path when the component mounts
     const path = window.location.pathname;
     if (path === "/") setActiveItem("home");
     else if (path === "/projects") setActiveItem("projects");
@@ -64,10 +62,10 @@ const Header = ({ isScrolled }) => {
         </NavItem>
       </NavMenu>
       <MobileMenuIcon onClick={toggleMenu}>
-        {isOpen ? <FaTimes /> : <FaBars />}
+        {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </MobileMenuIcon>
       {isOpen && (
-        <MobileMenu>
+        <MobileMenu isScrolled={isScrolled}>
           <MobileNavItem href="/" onClick={() => handleItemClick("home")} $isActive={activeItem === "home"}>Home</MobileNavItem>
           <MobileNavItem href="/projects" onClick={() => handleItemClick("projects")} $isActive={activeItem === "projects"}>Projects</MobileNavItem>
           <MobileNavItem href="/notes" onClick={() => handleItemClick("notes")} $isActive={activeItem === "notes"}>Notes</MobileNavItem>
@@ -87,16 +85,16 @@ const Container = styled.div`
   height: ${props => props.isScrolled ? '90px' : '70px'};
   display: flex;
   justify-content: space-between;
-  padding: 0 30px;
   align-items: center;
+  padding: 0 30px;
   z-index: 1000;
   transition: height 0.5s ease;
 `;
 
 const Logo = styled.a`
   width: 80px;
-  align-items: center;
   display: flex;
+  align-items: center;
 
   img {
     width: 70%;
@@ -105,8 +103,8 @@ const Logo = styled.a`
 `;
 
 const NavMenu = styled.div`
-  align-items: center;
   display: flex;
+  align-items: center;
   flex-flow: row nowrap;
   height: 100%;
   justify-content: flex-end;
@@ -166,27 +164,32 @@ const NavItem = styled.a`
 const MobileMenuIcon = styled.div`
   display: none;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
-  font-size: 24px;
   color: white;
+  z-index: 1001;
+  padding: 10px;
 
   @media (max-width: 768px) {
     display: flex;
+    position: absolute;
+    right: 80px;
   }
 `;
 
 const MobileMenu = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  top: ${props => props.isScrolled ? '90px' : '70px'};
   left: 0;
-  right: 0;
+  width: 100%;
   background-color: #0d0c0c;
   padding: 20px;
+  z-index: 1000;
 
-  @media (min-width: 769px) {
-    display: none;
+  @media (max-width: 768px) {
+    display: flex;
   }
 `;
 

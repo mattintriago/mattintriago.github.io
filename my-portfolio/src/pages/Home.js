@@ -87,9 +87,7 @@ const Home = () => {
       content: (
         <>
           <p>
-            I am a Software Engineer with a demonstrated background in developing Python and C++ applications for transportation and defense industries. 
-            Experienced in Docker-based infrastructures, system integration, and software testing. 
-            Strong engineering professional with a Bachelor's degree in Computer Science from Florida Institute of Technology.
+            I am a Software Engineer with a demonstrated background in developing applications for transportation and defense industries. Experienced in containerized environments, system integration, and software testing. Strong engineering professional with a Bachelor's degree in Computer Science from Florida Institute of Technology.
           </p>
           <PDFLinks>
             <ul>
@@ -115,6 +113,14 @@ const Home = () => {
       content: (
         <>
           {[
+            {
+              title: "Software Developer",
+              company: "Leidos, Orlando, FL",
+              period: "Oct. 2024 – Present",
+              responsibilities: [
+                "To be determined."
+              ]
+            },
             {
               title: "Software Engineer I",
               company: "Heka Aero LLC, Melbourne, FL",

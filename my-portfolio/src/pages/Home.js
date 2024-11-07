@@ -68,7 +68,7 @@ const Home = () => {
               <ContactLinks>
                 {[
                   { href: "mailto:mintriago2017@my.fit.edu", icon: FaEnvelope, text: "Email" },
-                  { href: "tel:+14074527951", icon: FaPhone, text: "Phone" },
+                  { href: "tel:", icon: FaPhone, text: "Phone" },
                   { href: "https://www.linkedin.com/in/matthew-intriago/", icon: FaLinkedin, text: "LinkedIn" },
                   { href: "https://github.com/mattintriago", icon: FaGithub, text: "Github" }
                 ].map(({ href, icon: Icon, text }) => (

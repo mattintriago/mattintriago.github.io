@@ -53,13 +53,13 @@ const Header = ({ isScrolled }) => {
         >
           <span>Projects</span>
         </NavItem>
-        <NavItem 
+        {/* <NavItem 
           href="/notes" 
           $isActive={activeItem === "notes"} 
           onClick={() => handleItemClick("notes")}
         >
           <span>Notes</span>
-        </NavItem>
+        </NavItem> */}
       </NavMenu>
       <MobileMenuIcon onClick={toggleMenu}>
         {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}

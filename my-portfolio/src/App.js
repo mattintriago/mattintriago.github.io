@@ -16,7 +16,7 @@ import Global from "./components/Global";
 import ConditionalHeader from './components/ConditionalHeader';
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
-import Notes from "./pages/Notes";
+// import Notes from "./pages/Notes";
 import Sp from "./pages/Sp";
 
 function App() {

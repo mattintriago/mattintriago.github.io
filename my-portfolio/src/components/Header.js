@@ -20,7 +20,7 @@ const Header = ({ isScrolled }) => {
     const path = window.location.pathname;
     if (path === "/") setActiveItem("home");
     else if (path === "/projects") setActiveItem("projects");
-    else if (path === "/notes") setActiveItem("notes");
+    // else if (path === "/notes") setActiveItem("notes");
   }, []);
 
   const toggleMenu = () => {
@@ -68,7 +68,7 @@ const Header = ({ isScrolled }) => {
         <MobileMenu isScrolled={isScrolled}>
           <MobileNavItem href="/" onClick={() => handleItemClick("home")} $isActive={activeItem === "home"}>Home</MobileNavItem>
           <MobileNavItem href="/projects" onClick={() => handleItemClick("projects")} $isActive={activeItem === "projects"}>Projects</MobileNavItem>
-          <MobileNavItem href="/notes" onClick={() => handleItemClick("notes")} $isActive={activeItem === "notes"}>Notes</MobileNavItem>
+          {/* <MobileNavItem href="/notes" onClick={() => handleItemClick("notes")} $isActive={activeItem === "notes"}>Notes</MobileNavItem> */}
         </MobileMenu>
       )}
     </Container>

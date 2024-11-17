@@ -118,7 +118,7 @@ const Home = () => {
               company: "Leidos, Orlando, FL",
               period: "Oct. 2024 – Present",
               responsibilities: [
-                "To be determined."
+                "Subcontracted as a Software Engineer for Cole Engineering Services Inc. working on developing and maintaining software for the CyberTRIDENT program."
               ]
             },
             {

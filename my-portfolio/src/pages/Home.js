@@ -118,19 +118,19 @@ const Home = () => {
               company: "Leidos, Orlando, FL",
               period: "Oct. 2024 – Present",
               responsibilities: [
-                "Subcontracted as a Software Engineer for Cole Engineering Services Inc. working on developing and maintaining software for the CyberTRIDENT program."
+                "- Subcontracted as a Software Engineer for Cole Engineering Services Inc. working on developing and maintaining software for the CyberTRIDENT program."
               ]
             },
             {
-              title: "Software Engineer I",
+              title: "Software Engineer",
               company: "Heka Aero LLC, Melbourne, FL",
               period: "Nov. 2021 – Aug. 2024",
               responsibilities: [
-                "Contracted to develop Python and C++ applications within a Docker-based infrastructure for Wabtec Corporation and Maritime Tactical Systems, Inc.",
-                "Conducted thorough testing and validation of integrated systems to ensure reliability and performance against defined requirements.",
-                "Created and maintained comprehensive documentation for the team, including detailed onboarding instructions, test case procedures, installation guides, and application READMEs.",
-                "Performed ongoing maintenance, support, and enhancements for existing systems and platforms, which included troubleshooting and debugging reported issues.",
-                "Collaborated with inter-disciplined engineers in an agile environment and participated in daily scrums."
+                "- Contracted to develop Python and C++ applications within a Docker-based infrastructure for Wabtec Corporation and Maritime Tactical Systems, Inc.",
+                "- Conducted thorough testing and validation of integrated systems to ensure reliability and performance against defined requirements.",
+                "- Created and maintained comprehensive documentation for the team, including detailed onboarding instructions, test case procedures, installation guides, and application READMEs.",
+                "- Performed ongoing maintenance, support, and enhancements for existing systems and platforms, which included troubleshooting and debugging reported issues.",
+                "- Collaborated with inter-disciplined engineers in an agile environment and participated in daily scrums."
               ]
             },
             {
@@ -138,9 +138,9 @@ const Home = () => {
               company: "Leonardo DRS, Melbourne, FL",
               period: "May. 2019 – Jun. 2020",
               responsibilities: [
-                "Developed C/C++ code in a Linux environment in support of active projects.",
-                "Developed automated unit tests and integrated them into a Jenkins pipeline.",
-                "Supported engineering with routine engineering duties and/or hands-on tasks."
+                "- Developed C/C++ code in a Linux environment in support of active projects.",
+                "- Developed automated unit tests and integrated them into a Jenkins pipeline.",
+                "- Supported engineering with routine engineering duties and/or hands-on tasks."
               ]
             },
             {
@@ -148,8 +148,8 @@ const Home = () => {
               company: "Florida Institute of Technology, Melbourne, FL",
               period: "Sep. 2017 – Jun. 2019",
               responsibilities: [
-                "Applied knowledge of computer software and hardware skills to incoming calls and appointments from students, faculty, and staff across campus.",
-                "Diagnosed and repaired computers across campus, helping to eliminate technical difficulties and inefficiencies for students, faculty, staff, and classroom technology."
+                "- Applied knowledge of computer software and hardware skills to incoming calls and appointments from students, faculty, and staff across campus.",
+                "- Diagnosed and repaired computers across campus, helping to eliminate technical difficulties and inefficiencies for students, faculty, staff, and classroom technology."
               ]
             }
           ].map((job, index) => (
@@ -186,7 +186,7 @@ const Home = () => {
         <>
           {[
             { title: "Programming Languages", skills: ["Python", "C++", "HTML", "CSS", "JavaScript", "PostgreSQL"] },
-            { title: "Frameworks & Tools", skills: ["Linux", "Docker", "Git", "Jenkins", "VS Code", "RTI DDS", "Jira", "Confluence", "React.js"] }
+            { title: "Technologies, Frameworks & Tools", skills: ["Linux", "Docker", "Git", "Jenkins", "VS Code", "Jira", "Confluence", "Kuburnetes", "RTI DDS"] }
           ].map((group, index) => (
             <SkillsGroup key={index}>
               <h3>{group.title}</h3>
@@ -262,7 +262,7 @@ const Section = styled.section`
 const Wrap = styled.div`
   margin-bottom: 20px;
   padding: 20px;
-  border: 1px solid #131313;
+  border: 1px solidrgb(255, 255, 255);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
@@ -281,50 +281,51 @@ const Wrap = styled.div`
   }
 
   p {
-    color: white;
+    color: black;
     text-align: justify;
   }
 
   h1 {
     margin-top: 0px;
-    color: white;
+    color: black;
     font-size: 24px;
   }
 
   h2 {
-    color: #c6c2c2;
+    color:rgb(0, 0, 0);
     font-size: 20px;
     top-margin: -10px;
   }
 
   h3 {
-    color: #b2afaf;
+    color:rgb(0, 0, 0);
     font-size: 18px;
     top-margin: -20px;
   }
 
   h4 {
-    color: #7d7d81 ;
+    color:rgb(0, 0, 0) ;
     font-size: 16px;
     top-margin: -20px;
   }
 
   h5 {
-    color: #7d7d81 ;
+    color:rgb(0, 0, 0) ;
     font-size: 16px;
   }
 `;
 
 const PDFLinks = styled.div`
   margin-top: 20px;
-
+  
   h3 {
-    color: #c6c2c2;
+    color:rgb(0, 0, 0);
     font-size: 20px;
     margin-bottom: 15px;
   }
 
   ul {
+    color:rgb(0, 0, 0);
     list-style-type: none;
     padding: 0;
     display: flex;
@@ -339,16 +340,16 @@ const PDFLinks = styled.div`
   a {
     display: inline-flex;
     align-items: center;
-    color: #ffffff;
+    color:rgb(0, 0, 0);
     text-decoration: none;
     font-size: 16px;
     transition: color 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     padding: 8px 12px;
     border-radius: 4px;
 
     &:hover {
-      color: #0077b5;
+      color:rgb(88, 148, 180);
       background-color: rgba(255, 255, 255, 0.2);
     }
 
@@ -370,7 +371,7 @@ const HomeContent = styled.div`
 
 const JobExperience = styled.div`
   margin-bottom: 100px;
-  color: white;
+  color: black;
   text-align: justify;
   
   &:last-child {
@@ -385,7 +386,7 @@ const SkillsList = styled.ul`
   padding: 0;
 
   li {
-    color: white;
+    color: black;
     border-radius: 4px;
     padding: 5px 10px;
     margin: 5px;
@@ -406,18 +407,19 @@ const ContactLinks = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-top: 20px;
+  color:rgb(0, 0, 0);
 
   a {
     display: flex;
     align-items: center;
     margin: 5px 15px 5px 0;
-    color: white;
+    color: black;
     text-decoration: none;
     transition: color 0.3s ease;
     font-size: 18px;
 
     &:hover {
-      color: #0077b5;
+      color:rgb(88, 148, 180);
     }
 
     svg {

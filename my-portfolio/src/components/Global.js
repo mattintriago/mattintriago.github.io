@@ -17,10 +17,10 @@ const Global = (props) => {
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #131313;
+    background-color:rgb(255, 255, 255);
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Times New Roman', sans-serif;
   }
 `;
 

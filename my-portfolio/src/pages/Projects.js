@@ -113,7 +113,7 @@ const Container = styled.div`
   
   h1 {
     margin-top: 0px;
-    color: white;
+    color: black;
     font-size: 24px;
   }
 
@@ -136,7 +136,7 @@ const Section = styled.section`
 const ProjectWrap = styled.div`
   margin-bottom: 40px;
   padding: 20px;
-  border: 1px solid #131313;
+  border: 1px solidrgb(255, 255, 255);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
@@ -146,12 +146,12 @@ const ProjectWrap = styled.div`
   }
 
   p {
-    color: white;
+    color: black;
     text-align: justify;
   }
 
   h2 {
-    color: #c6c2c2;
+    color:rgb(0, 0, 0);
     font-size: 20px;
     margin-top: 0;
   }
@@ -167,12 +167,12 @@ const Link = styled.a`
   display: flex;
   align-items: center;
   gap: 5px;
-  color: white;
+  color: black;
   text-decoration: none;
   transition: color 0.3s ease;
 
   &:hover {
-    color: #0077b5;
+    color:rgb(88, 148, 180);
   }
 `;
 

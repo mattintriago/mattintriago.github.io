@@ -62,7 +62,7 @@ const Home = () => {
               <HeaderInfo>
                 <h1>Matthew Intriago</h1>
                 <h2>Software Engineer</h2>
-                <h3>Melbourne, FL, United States</h3>
+                <h3>Orlando, FL, United States</h3>
               </HeaderInfo>
 
               <ContactLinks>
@@ -87,8 +87,7 @@ const Home = () => {
       content: (
         <>
           <p>
-          I am a Software Engineer with 4+ years of experience developing applications across multiple industries including transportation, defense, and cybersecurity. Skilled in agile software development, containerization, and system integration testing. A dedicated engineering professional with a Bachelor's degree in Computer Science from Florida Institute of Technology.
-          </p>
+          I am a Software Engineer with 4+ years of experience developing applications across multiple industries including transportation, defense, and cybersecurity. Skilled in agile software development, containerization, and system integration testing. A dedicated engineering professional with a Bachelor's degree in Computer Science from Florida Institute of Technology.          </p>
           <PDFLinks>
             <ul>
               <li>
